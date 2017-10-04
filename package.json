@@ -1,0 +1,23 @@
+{
+  "name": "bamazon-marketplace",
+  "version": "1.0.0",
+  "description": "Assignment 11 - Amazon-like storefront with MySQL",
+  "main": "bamazonCustomer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexanderpaulino/bamazon-marketplace.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexanderpaulino/bamazon-marketplace/issues"
+  },
+  "homepage": "https://github.com/alexanderpaulino/bamazon-marketplace#readme",
+  "dependencies": {
+    "inquirer": "^3.3.0",
+    "mysql": "^2.14.1"
+  }
+}
