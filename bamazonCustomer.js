@@ -72,7 +72,7 @@ function shopping() {
       suffix: "\n  ITEM_ID:",
       validate: function(itemID) {
       if (itemID.toLowerCase() === "exit"){
-      	process.exit()
+      	end();
       }
       inputCheck = false;
       for (var i = 0; i < res.length; i++) {
@@ -94,7 +94,7 @@ function shopping() {
       suffix: "\n  Quantity:",
       validate: function(quantity) {
       if (quantity.toLowerCase() === "exit"){
-      	process.exit()
+      	end();
       }
     	if (quantity.match(/^-?\d+\.?\d*$/) && quantity.length <= 3) {
     		return true;
@@ -149,3 +149,11 @@ function shopping() {
     });
    });
 };
+
+//And this simply presents a brief farewell message should the user exit the app.
+function end() {
+  console.log("\r\n><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><")
+  console.log("\r\nThank you for visiting the Bamazon Marketplace! We hope to see you again!\r\n")
+  console.log("><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><")
+  process.exit();
+}
