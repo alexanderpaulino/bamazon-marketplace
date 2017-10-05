@@ -34,7 +34,7 @@ If, however, all products have more than 20 available units for sale, the user w
 
 Should the user wish to restock particular items, they may do so through the "Add to Inventory" option. Here they'll be presented with the marketplace listing and asked to input an itemID from those listed. Then they'll be prompted to enter the desired quantity they'd like to order for restocking.
 
-<img src="https://github.com/alexanderpaulino/bamazon-marketplace/blob/master/demogifs/manageraddinventory.gif?raw=true">
+<img src="https://github.com/alexanderpaulino/bamazon-marketplace/blob/master/demogifs/manageraddtoinventory.gif?raw=true">
 
 The fourth option, "Add New Product", will prompt the user to enter a unique Item ID, a product name, a department name, a price, and the starting quantity. Once all answers have been submitted, they'll be added to the table. See below for both the manager's addition of the new product. 
 
