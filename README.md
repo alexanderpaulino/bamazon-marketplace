@@ -32,15 +32,15 @@ If, however, all products have more than 20 available units for sale, the user w
 
 <img src="https://github.com/alexanderpaulino/bamazon-marketplace/blob/master/demogifs/managerviewlowfail.gif?raw=true">
 
-Should the user wish to restock particular items, they may do so through the "Add to Inventory" option. Here they'll be presented with the marketplace listing and asked to input an itemID from those listed. Then they'll be prompted to enter the desired quantity they'd like to order for restocking.
+Should the user wish to restock particular items, they may do so through the "Add to Inventory" option. Here they'll be presented with the marketplace listing and asked to input an itemID from those listed. Then they'll be prompted to enter the desired quantity they'd like to order for restocking. In this case, the user has ordered 21 units to restock their supply of monitors, bringing the new total to 30.
 
 <img src="https://github.com/alexanderpaulino/bamazon-marketplace/blob/master/demogifs/manageraddtoinventory.gif?raw=true">
 
-The fourth option, "Add New Product", will prompt the user to enter a unique Item ID, a product name, a department name, a price, and the starting quantity. Once all answers have been submitted, they'll be added to the table. See below for both the manager's addition of the new product. 
+The fourth option, "Add New Product", will prompt the user to enter a unique Item ID, a product name, a department name, a price, and the starting quantity. Once all answers have been submitted, they'll be added to the table. Here the user is adding a Computer Mouse to the database table. See below for both the manager's addition of the new product - 
 
 <img src="https://github.com/alexanderpaulino/bamazon-marketplace/blob/master/demogifs/manageraddproduct.gif?raw=true">
 
-And the customer seeing the same on their next login.
+- and the customer seeing the same on their next login.
 
 <img src="https://github.com/alexanderpaulino/bamazon-marketplace/blob/master/demogifs/customernewproduct.gif?raw=true">
 
