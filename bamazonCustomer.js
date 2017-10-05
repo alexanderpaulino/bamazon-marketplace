@@ -16,9 +16,17 @@ var connection = mysql.createConnection({
 
 connection.connect(function(err) {
 if (err) throw err;
+consoleClear();
 start();
 });
 
+// Found this recently; it will clear everything above the terminal/console before starting. Just provides a cleaner look
+// when initiating the app.
+function consoleClear(){
+console.log('\033c');
+}
+
+// This function will display the welcome text and then call the function prompting the user to select a management option.
 function start() {
   console.log("><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><")
   console.log("\r\nWelcome to the Bamazon Marketplace! Please see our inventory below!\r\n")
@@ -27,6 +35,8 @@ function start() {
   shopping();
 };
 
+// This function will prompt the user to purhcase another item once that has been completed, posting 
+// the marketplace listing again.
 function moreShopping() {
 	console.log("><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><")
   console.log("\r\n\tMay we interest you in any other items? Please see below!\r\n")
@@ -34,6 +44,7 @@ function moreShopping() {
   shopping();
 }
 
+//This is our primary shopping function. All customer purchase functionality will take place here.
 function shopping() {
 	connection.query("SELECT item_id,product_name,price,stock_quantity FROM products", function(err, res) {
 	console.log("><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><")
@@ -49,6 +60,10 @@ function shopping() {
 	console.log("><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><")
  	
   inquirer.prompt([
+    //Here the user inupts an itemID from the field above. If they fail to match, the validate function will return false
+    //and they'll need to tr again. Or they can exit by typing 'exit'.
+    //Below that, they can input the number of units they'd like to order. The validate function there ensures that
+    //only numbers can be entered for the quantity, maxium of 3 digits in length.
     {
       name: "itemID",
       type: "input",
@@ -81,7 +96,7 @@ function shopping() {
       if (quantity.toLowerCase() === "exit"){
       	process.exit()
       }
-    	if (quantity.match("[0-9]+") && quantity.length <= 3) {
+    	if (quantity.match(/^-?\d+\.?\d*$/) && quantity.length <= 3) {
     		return true;
     		} else {
     			return false;
@@ -89,7 +104,9 @@ function shopping() {
     	}
     }
   ]).then(function(answer) {
-  		// console.log(res)
+  		// Here, the user's answer for the itemID will be compared against the response we received from the mySQL
+      // query further above. If there's a match, it assigns that object and all of its properties to the variable
+      // chosenProduct. We then subtract the requested quantity from the product IF there's enough available stock.
     	var chosenProduct;
     	for (var i = 0; i < res.length; i++) {
       if (parseInt(answer.itemID) === res[i].item_id) {
@@ -110,17 +127,23 @@ function shopping() {
             }
           ],
           function(error) {
+            //if all goes well, a success message will be generated and the user will be shown how much they'll
+            //be charged for their order.
             if (error) throw err;
             console.log("\r\nThank you! Your order has been placed and your account has been charged $"+
             	(answer.quantity*chosenProduct.price).toFixed(2)
             +"\r\nWe'll have that shipped out to you soon!\r\n");
+            console.log("Marketplace loading...\r\n")
             setTimeout(moreShopping, 5000)
           }
         );
       }
+      //If the user requested more units of a particular item than we have in stock, the order will be refused
+      //and the user will be sent back to the marketplace to order another item or a smaller amount.
       else {
         console.log("I'm afraid we don't have enough in stock to complete your order."+
         	"\r\nPlease check our inventory again for another item or order a lower quantity.");
+        console.log("Marketplace loading...\r\n")
         setTimeout(moreShopping, 5000)
       }
     });

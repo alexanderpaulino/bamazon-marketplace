@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/alexanderpaulino/bamazon-marketplace#readme",
   "dependencies": {
+    "columnify": "^1.5.4",
     "inquirer": "^3.3.0",
     "mysql": "^2.14.1"
   }
