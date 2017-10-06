@@ -42,7 +42,7 @@ function moreShopping() {
   console.log("\r\n\tMay we interest you in any other items? Please see below!\r\n")
   console.log("><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><")
   shopping();
-}
+};
 
 //This is our primary shopping function. All customer purchase functionality will take place here.
 function shopping() {
@@ -55,9 +55,9 @@ function shopping() {
 		console.log((i+1)+". ID: "+res[i].item_id+"\t  |  "+res[i].product_name+"\t\t| Price: $"+res[i].price.toFixed(2))
 		} else if (res[i].product_name.length >= 18 && res[i].stock_quantity >= 1){
 		console.log((i+1)+". ID: "+res[i].item_id+"\t  |  "+res[i].product_name+"\t| Price: $"+res[i].price.toFixed(2))
-		}
-  }
-	console.log("><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><")
+		};
+  };
+	console.log("><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><");
  	
   inquirer.prompt([
     //Here the user inupts an itemID from the field above. If they fail to match, the validate function will return false
@@ -73,18 +73,18 @@ function shopping() {
       validate: function(itemID) {
       if (itemID.toLowerCase() === "exit"){
       	end();
-      }
+      };
       inputCheck = false;
       for (var i = 0; i < res.length; i++) {
       if (parseInt(itemID) === res[i].item_id) {
       	inputCheck = true;
-      	}
-      }
+      	};
+      };
       if (inputCheck == true) {
       	return true;
       	} else {
     		return false;
-      	}
+      	};
     	}
     },
     {
@@ -100,7 +100,7 @@ function shopping() {
     		return true;
     		} else {
     			return false;
-    		}
+    		};
     	}
     }
   ]).then(function(answer) {
@@ -111,8 +111,8 @@ function shopping() {
     	for (var i = 0; i < res.length; i++) {
       if (parseInt(answer.itemID) === res[i].item_id) {
         chosenProduct = res[i];
-      	} 
-    	}
+      	}; 
+    	};
 
       if (chosenProduct.stock_quantity >= parseInt(answer.quantity)) {
         
@@ -133,27 +133,27 @@ function shopping() {
             console.log("\r\nThank you! Your order has been placed and your account has been charged $"+
             	(answer.quantity*chosenProduct.price).toFixed(2)
             +"\r\nWe'll have that shipped out to you soon!\r\n");
-            console.log("Marketplace loading...\r\n")
-            setTimeout(moreShopping, 5000)
+            console.log("Marketplace loading...\r\n");
+            setTimeout(moreShopping, 5000);
           }
-        );
+        )
       }
       //If the user requested more units of a particular item than we have in stock, the order will be refused
       //and the user will be sent back to the marketplace to order another item or a smaller amount.
       else {
         console.log("I'm afraid we don't have enough in stock to complete your order."+
         	"\r\nPlease check our inventory again for another item or order a lower quantity.");
-        console.log("Marketplace loading...\r\n")
-        setTimeout(moreShopping, 5000)
-      }
+        console.log("Marketplace loading...\r\n");
+        setTimeout(moreShopping, 5000);
+      };
     });
    });
 };
 
 //And this simply presents a brief farewell message should the user exit the app.
 function end() {
-  console.log("\r\n><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><")
-  console.log("\r\nThank you for visiting the Bamazon Marketplace! We hope to see you again!\r\n")
-  console.log("><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><")
+  console.log("\r\n><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><");
+  console.log("\r\nThank you for visiting the Bamazon Marketplace! We hope to see you again!\r\n");
+  console.log("><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><");
   process.exit();
-}
+};

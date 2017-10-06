@@ -29,18 +29,18 @@ console.log('\033c');
 
 // This function will display the welcome text and then call the function prompting the user to select a management option.
 function start() {
-  console.log("><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><")
-  console.log("\r\n\tWelcome to the Bamazon Marketplace - Manager's Suite\r\n")
-  console.log("\r\n       If you'd like to exit at any time, simply select 'Exit'.\r\n")
-  console.log("><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><")
+  console.log("><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><");
+  console.log("\r\n\tWelcome to the Bamazon Marketplace - Manager's Suite\r\n");
+  console.log("\r\n       If you'd like to exit at any time, simply select 'Exit'.\r\n");
+  console.log("><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><");
   managing();
 };
 
 // This function will prompt the user to make another choice once their previous action has been completed.
 function moreManaging() {
-	console.log("><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><")
-  console.log("\r\n\tIs there anything else you'd like to do before logging off?\r\n")
-  console.log("><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><")
+	console.log("><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><");
+  console.log("\r\n\tIs there anything else you'd like to do before logging off?\r\n");
+  console.log("><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><");
   managing();
 }
 
@@ -84,9 +84,9 @@ function managing() {
 function managerAllProducts(){
   connection.query("SELECT item_id,product_name,price,stock_quantity FROM products", function(err, res) {
   var columns = columnify(res,{minWidth: 16,config: {stock_quantity: {align: 'right'},price: {align: 'right'}}})
-    console.log("><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><\n")
-    console.log(columns)
-    console.log("><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><\n")
+    console.log("><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><\n");
+    console.log(columns);
+    console.log("><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><\n");
     moreManaging();
   });
 }
@@ -100,12 +100,12 @@ function managerLowInventory(){
       var columns = columnify(res,{minWidth: 16,config: {stock_quantity: {align: 'right'},price: {align: 'right'}}})
       console.log("><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><\n")
       if (columns === ""){
-      console.log("\t\t  All products are currently above\n\t\t 20 units in quantity at this time.\n")
+      console.log("\t\t  All products are currently above\n\t\t 20 units in quantity at this time.\n");
       } else {
-        console.log("\t\t\tLOW INVENTORY\n\n\tConsider ordering additional units of the items below.\n")
-        console.log(columns)
+        console.log("\t\t\tLOW INVENTORY\n\n\tConsider ordering additional units of the items below.\n");
+        console.log(columns);
       }
-      console.log("><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><\n")
+      console.log("><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><\n");
       moreManaging();
       });
 }
@@ -116,9 +116,9 @@ function managerLowInventory(){
 function managerAddInventory(){
 connection.query("SELECT item_id,product_name,price,stock_quantity FROM products", function(err, res) {
   var columns = columnify(res,{minWidth: 16,config: {stock_quantity: {align: 'right'},price: {align: 'right'}}})
-  console.log("><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><\n")
-  console.log(columns)
-  console.log("><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><\n")
+  console.log("><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><\n");
+  console.log(columns);
+  console.log("><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><\n");
   inquirer.prompt([
       {
         name: "itemID",
@@ -128,7 +128,7 @@ connection.query("SELECT item_id,product_name,price,stock_quantity FROM products
         suffix: "\n  ITEM_ID:",
         validate: function(itemID) {
         if (itemID.toLowerCase() === "exit"){
-          process.exit()
+          process.exit();
         }
         inputCheck = false;
         for (var i = 0; i < res.length; i++) {
@@ -150,7 +150,7 @@ connection.query("SELECT item_id,product_name,price,stock_quantity FROM products
         suffix: "\n  Quantity:",
         validate: function(quantity) {
         if (quantity.toLowerCase() === "exit"){
-          process.exit()
+          process.exit();
         }
         if (quantity.match(/^-?\d+\.?\d*$/) && quantity.length <= 3) {
           return true;
@@ -197,7 +197,7 @@ inquirer.prompt([
         suffix: "\n  ITEM_ID:",
         validate: function(itemID) {
         if (itemID.toLowerCase() === "exit"){
-          process.exit()
+          process.exit();
         }
         inputCheck = false;
         for (var i = 0; i < res.length; i++) {
@@ -219,7 +219,7 @@ inquirer.prompt([
         suffix: "\n  Product Name:",
         validate: function(productName) {
         if (productName.toLowerCase() === "exit"){
-          process.exit()
+          process.exit();
         }
         if (productName.length >= 3) {
           return true;
@@ -242,7 +242,7 @@ inquirer.prompt([
         suffix: "\n  Price: $",
         validate: function(price) {
         if (price.toLowerCase() === "exit"){
-          process.exit()
+          process.exit();
         }
         if (price.match(/^-?\d*[\.]?\d+$/) && price.length >= 2) {
           return true;
@@ -258,7 +258,7 @@ inquirer.prompt([
         suffix: "\n  Quantity:",
         validate: function(quantity) {
         if (quantity.toLowerCase() === "exit"){
-          process.exit()
+          process.exit();
         }
         if (quantity.match(/^-?\d+\.?\d*$/) && quantity.length <= 3) {
           return true;
@@ -285,14 +285,14 @@ inquirer.prompt([
         console.log("><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><")
         }
       );
-      setTimeout(moreManaging, 5000)
+      setTimeout(moreManaging, 5000);
       });
   });
-}
+};
 
 function managerExit(){
 console.log("><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><")
 console.log("\r\n   Thank you for using the Bamazon Marketplace - Manager's Suite!\r\n")
 console.log("><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><")
 process.exit();
-}
+};
